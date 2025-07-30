@@ -1,17 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import FilteredTimelineWidget from "../components/FilteredTimelineWidget.jsx";
-import { getCollection } from "astro:content";
 import Hero from "../components/Hero.astro";
+import FilteredTimeline from "../components/FilteredTimeline.astro";
+import { getCollection } from "astro:content";
 
-const entries = await getCollection("portfolio");
-const tags = [...new Set(entries.flatMap((e) => e.data.tags ?? []))];
+const raw = await getCollection("portfolio");
+
+const entries = await Promise.all(
+  raw.map(async (entry) => {
+    const { Content } = await entry.render();
+    return {
+      ...entry,
+      Content,
+    };
+  })
+);
+
+const tags = [...new Set(entries.flatMap(e => e.data.tags ?? []))];
 ---
 
 <BaseLayout>
   <main class="p-6">
-    <h1 class="text-3xl font-bold mb-6">My Project Portfolio</h1>
-      <Hero
+    <Hero
       name="Your Name"
       tagline="I build and automate workflows with Docker, Terraform, and Tailwind."
       intro="Welcome to my project portfolio. I specialize in backend APIs, automation, and modern web technologies."
@@ -20,7 +30,7 @@ const tags = [...new Set(entries.flatMap((e) => e.data.tags ?? []))];
         linkedin: "https://linkedin.com/in/yourprofile",
       }}
     />
-    
-    <FilteredTimelineWidget client:load entries={entries} tags={tags} />
+
+    <FilteredTimeline entries={entries} tags={tags} />
   </main>
 </BaseLayout>

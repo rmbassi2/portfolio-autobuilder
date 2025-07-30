@@ -1,0 +1,32 @@
+---
+const { entries } = Astro.props;
+---
+
+<div id="timeline-list" class="relative ml-6">
+  {entries.map((e) => (
+    <div
+      class="timeline-entry group mb-10 flex items-start"
+      data-tags={(e.data.tags ?? []).join(" ")}
+      data-slug={e.slug}
+    >
+      <span class="mt-1 h-4 w-4 rounded-full bg-indigo-500 dark:bg-indigo-400"></span>
+      <div class="ml-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl">
+        {e.data.image && (
+          <img src={e.data.image} alt={e.data.title} class="rounded mb-4" />
+        )}
+        <h3 class="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          {e.data.title}
+        </h3>
+        <time class="block text-gray-500 dark:text-gray-400 mt-1 mb-3">{e.data.date}</time>
+        <div class="prose dark:prose-invert">
+          <e.Content />
+        </div>
+        {e.data.repo && (
+          <a href={e.data.repo} class="inline-block mt-3 text-indigo-500 hover:underline">
+            View Repo →
+          </a>
+        )}
+      </div>
+    </div>
+  ))}
+</div>

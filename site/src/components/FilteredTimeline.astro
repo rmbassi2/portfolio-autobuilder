@@ -1,0 +1,17 @@
+---
+import Timeline from './Timeline.astro';
+import FilterControls from './FilterControls.jsx';
+
+const { entries, tags } = Astro.props;
+
+// Prepare just the tag metadata to send to the client
+const entryMetadata = entries.map((e) => ({
+  slug: e.slug,
+  tags: e.data.tags ?? [],
+}));
+---
+
+<section id="timeline" class="mt-16">
+  <FilterControls client:load entries={entryMetadata} tags={tags} />
+  <Timeline entries={entries} />
+</section>
