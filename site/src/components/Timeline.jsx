@@ -10,6 +10,7 @@ export default function Timeline({ entries, filterTag }) {
           <div class="ml-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg
          transform transition-transform transition-shadow duration-300 ease-in-out
          hover:scale-[1.02] hover:shadow-2xl">
+          <img src={e.data.image} alt="" class="rounded mb-4" />
             <h3 class="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               {e.data.title}
             </h3>

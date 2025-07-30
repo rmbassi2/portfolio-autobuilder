@@ -1,0 +1,30 @@
+---
+// Hero.astro
+const { name, tagline, intro, social } = Astro.props;
+---
+<section class="bg-card-bg dark:bg-gray-900 text-gray-900 dark:text-gray-100 py-20">
+  <div class="max-w-4xl mx-auto px-4 flex flex-col items-center text-center space-y-6">
+    <h1 class="text-4xl md:text-5xl font-bold font-sans">{name}</h1>
+
+    <p class="text-lg max-w-2xl">{tagline}</p>
+    <p class="text-base max-w-2xl">{intro}</p>
+
+    <div class="flex justify-center gap-4">
+      <a href="/about" class="btn-primary">About Me</a>
+      <a href="/contact" class="btn-secondary">Contact</a>
+    </div>
+
+    <div class="flex justify-center space-x-4">
+      {social.github && (
+        <a href={social.github} aria-label="GitHub" target="_blank" rel="noopener" class="text-primary hover:text-primary-dark">
+          GitHub
+        </a>
+      )}
+      {social.linkedin && (
+        <a href={social.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener" class="text-primary hover:text-primary-dark">
+          LinkedIn
+        </a>
+      )}
+    </div>
+  </div>
+</section>

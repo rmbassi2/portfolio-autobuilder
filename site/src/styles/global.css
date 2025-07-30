@@ -29,3 +29,12 @@
         font-family: 'Inter', system-ui, sans-serif;
     }
 }
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition;
+  }
+  .btn-secondary {
+    @apply px-4 py-2 bg-secondary text-white rounded hover:bg-secondary-dark transition;
+  }
+}

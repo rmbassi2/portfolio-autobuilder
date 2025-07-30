@@ -8,11 +8,27 @@ export default function FilteredTimelineWidget({ entries, tags }) {
   return (
     <div>
       <nav class="flex flex-wrap gap-2 mb-4">
-        <button onClick={() => setSelected(null)} class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700">
+        <button
+          onClick={() => setSelected(null)}
+          class={`px-3 py-1 rounded ${
+            selected === null
+              ? 'bg-indigo-500 text-white'
+              : 'bg-gray-200 dark:bg-gray-700'
+          }`}
+        >
           All
         </button>
+
         {tags.map(tag => (
-          <button key={tag} onClick={() => setSelected(tag)} class="px-3 py-1 rounded bg-gray-200 dark:bg-gray-700">
+          <button
+            key={tag}
+            onClick={() => setSelected(tag)}
+            class={`px-3 py-1 rounded ${
+              selected === tag
+                ? 'bg-indigo-500 text-white'
+                : 'bg-gray-200 dark:bg-gray-700'
+            }`}
+          >
             {tag}
           </button>
         ))}
