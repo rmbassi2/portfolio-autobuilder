@@ -1,1 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --color-primary: #06B6D4;
+    /* cyan */
+    --color-secondary: #8B5CF6;
+    /* violet */
+    --color-highlight: #F43F5E;
+    /* rose */
+
+    --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+
+@layer base {
+    :root {
+        --card-bg: #ffffff;
+    }
+
+    .dark {
+        --card-bg: #1f2937;
+        /* slate-800 */
+    }
+
+    html {
+        font-family: 'Inter', system-ui, sans-serif;
+    }
+}

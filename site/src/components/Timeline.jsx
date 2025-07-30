@@ -7,8 +7,10 @@ export default function Timeline({ entries, filterTag }) {
       {filtered.map(e => (
         <div class="group mb-10 flex items-start">
           <span class="mt-1 h-4 w-4 rounded-full bg-indigo-500 dark:bg-indigo-400"></span>
-          <div class="ml-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transition-transform transform hover:scale-[1.02] hover:shadow-xl">
-            <h3 class="text-xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-500 bg-clip-text text-transparent">
+          <div class="ml-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg
+         transform transition-transform transition-shadow duration-300 ease-in-out
+         hover:scale-[1.02] hover:shadow-2xl">
+            <h3 class="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               {e.data.title}
             </h3>
             <time class="block text-gray-500 dark:text-gray-400 mt-1 mb-3">{e.data.date}</time>
