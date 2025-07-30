@@ -1,0 +1,33 @@
+---
+const { defaultTheme = "auto" } = Astro.props;
+---
+<script is:inline data-default-theme={defaultTheme}>
+window.theme ||= (() => {
+  const storageKey = 'theme';
+  const store = typeof localStorage !== "undefined" ? localStorage : { getItem: () => null, setItem: () => {} };
+  const mediaMatcher = window.matchMedia("(prefers-color-scheme: dark)");
+  let systemTheme = mediaMatcher.matches ? "dark" : "light";
+  mediaMatcher.addEventListener("change", e => {
+    systemTheme = e.matches ? "dark" : "light";
+    applyTheme(getTheme());
+  });
+
+  function applyTheme(theme) {
+    const resolved = theme === "auto" ? systemTheme : theme;
+    document.documentElement.dataset.theme = resolved;
+    document.documentElement.style.colorScheme = resolved;
+    document.dispatchEvent(new CustomEvent("theme-changed", { detail: { theme, systemTheme, defaultTheme } }));
+  }
+
+  function getTheme() {
+    return store.getItem(storageKey) || defaultTheme;
+  }
+  function setTheme(theme) {
+    store.setItem(storageKey, theme);
+    applyTheme(theme);
+  }
+
+  return { getTheme, setTheme };
+})();
+window.theme.setTheme(window.theme.getTheme());
+</script>

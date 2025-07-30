@@ -1,0 +1,39 @@
+---
+import ThemeManager from "../components/ThemeManager.astro";
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <ThemeManager defaultTheme="auto" />
+    <title>Your Portfolio</title>
+  </head>
+  <body class="antialiased bg-white text-black dark:bg-gray-900 dark:text-gray-100">
+    <header class="flex justify-between items-center p-4">
+      <h1 class="text-xl font-bold">Your Portfolio</h1>
+      <button
+        id="theme-toggle"
+        aria-label="Toggle dark mode"
+        class="p-2 rounded bg-gray-200 dark:bg-gray-700"
+      >
+        <!-- HTML entity for half-moon -->
+        &#127771;
+      </button>
+    </header>
+
+    <slot />
+
+    <script is:inline>
+      const btn = document.getElementById("theme-toggle");
+      btn?.addEventListener("click", () => {
+        const current = window.theme.getTheme();
+        window.theme.setTheme(current === "dark" ? "light" : "dark");
+      });
+
+      // Optionally, update the button icon or aria label when theme changes
+      document.addEventListener("theme-changed", (e) => {
+        const isDark = e.detail.theme === "dark";
+        btn.textContent = isDark ? '☀️' : '🌙';
+      });
+    </script>
+  </body>
+</html>
