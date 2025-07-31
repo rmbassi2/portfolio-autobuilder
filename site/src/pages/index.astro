@@ -5,6 +5,7 @@ import FilteredTimeline from "../components/FilteredTimeline.astro";
 import { getCollection } from "astro:content";
 
 const raw = await getCollection("portfolio");
+raw.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const entries = await Promise.all(
   raw.map(async (entry) => {
