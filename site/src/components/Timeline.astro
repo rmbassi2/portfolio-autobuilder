@@ -2,31 +2,48 @@
 const { entries } = Astro.props;
 ---
 
-<div id="timeline-list" class="relative ml-6">
-  {entries.map((e) => (
-    <div
-      class="timeline-entry group mb-10 flex items-start"
-      data-tags={(e.data.tags ?? []).join(" ")}
-      data-slug={e.slug}
-    >
-      <span class="mt-1 h-4 w-4 rounded-full bg-indigo-500 dark:bg-indigo-400"></span>
-      <div class="ml-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl">
-        {e.data.image && (
-          <img src={e.data.image} alt={e.data.title} class="rounded mb-4" />
-        )}
-        <h3 class="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          {e.data.title}
-        </h3>
-        <time class="block text-gray-500 dark:text-gray-400 mt-1 mb-3">{e.data.date}</time>
-        <div class="prose dark:prose-invert">
-          <e.Content />
+<div id="timeline-list" class="relative max-w-5xl mx-auto px-4 before:absolute before:top-0 before:bottom-0 before:left-1/2 before:-ml-0.5 before:w-px before:bg-gray-300 dark:before:bg-gray-600">
+  
+  {entries.map((e, i) => {
+    const isLeft = i % 2 === 0;
+    const cardAlign = isLeft ? "md:pr-8 md:items-end text-right" : "md:pl-8 md:items-start text-left";
+    const containerAlign = isLeft ? "md:flex-row-reverse" : "md:flex-row";
+
+    return (
+      <div
+        class={`timeline-entry relative mb-12 flex flex-col ${containerAlign}`}
+        data-tags={(e.data.tags ?? []).join(" ")}
+        data-slug={e.slug}
+      >
+        {/* Dot */}
+        <div class="absolute left-1/2 top-4 -ml-2 z-10">
+          <span class="block h-4 w-4 rounded-full bg-indigo-500 dark:bg-indigo-400"></span>
         </div>
-        {e.data.repo && (
-          <a href={e.data.repo} class="inline-block mt-3 text-indigo-500 hover:underline">
-            View Repo →
-          </a>
-        )}
+
+        {/* Spacer for timeline alignment */}
+        <div class="hidden md:block md:w-1/2"></div>
+
+        {/* Card */}
+        <div class={`w-full md:w-1/2 ${cardAlign}`}>
+          <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl">
+            {e.data.image && (
+              <img src={e.data.image} alt={e.data.title} class="rounded mb-4" />
+            )}
+            <h3 class="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              {e.data.title}
+            </h3>
+            <time class="block text-gray-500 dark:text-gray-400 mt-1 mb-3">{e.data.date}</time>
+            <div class="prose dark:prose-invert">
+              <e.Content />
+            </div>
+            {e.data.repo && (
+              <a href={e.data.repo} class="inline-block mt-3 text-indigo-500 hover:underline">
+                View Repo →
+              </a>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
-  ))}
+    );
+  })}
 </div>

@@ -1,0 +1,158 @@
+---
+import { ArrowLeft, Home, User, Mail, MessageSquare } from "@lucide/astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+    <section class="max-w-3xl mx-auto px-4 py-10">
+        <a
+            href="/"
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-4"
+        >
+            <ArrowLeft class="w-4 h-4 align-middle" />
+            <Home class="w-4 h-4 align-middle" />
+            <span>Back</span>
+        </a>
+        <h1 class="text-3xl font-bold mb-6 text-primary">Get in Touch</h1>
+
+        <p class="mb-6 text-muted-foreground">
+            Whether you have a project in mind, a question, or just want to say
+            hi, I'd love to hear from you.
+        </p>
+
+        <div class="space-y-1">
+            
+            <div class="flex items-center gap-1">
+                <img
+                    src="/icons/LinkedIn_icon.svg"
+                    alt="LinkedIn logo"
+                    class="w-5 h-5 block"
+                />
+                <a
+                    href="https://linkedin.com/in/yourprofile"
+                    class="hover:underline"
+                    target="_blank">LinkedIn</a
+                >
+            </div>
+
+            <div class="flex items-center gap-1">
+                <!-- Light mode icon -->
+                <img
+                    src="/icons/github-mark.svg"
+                    alt="GitHub logo"
+                    class="w-5 h-5 block dark:hidden"
+                />
+
+                <!-- Dark mode icon -->
+                <img
+                    src="/icons/github-mark-white.svg"
+                    alt="GitHub logo (dark)"
+                    class="w-5 h-5 hidden dark:block"
+                />
+                <a
+                    href="https://github.com/yourusername"
+                    class="hover:underline"
+                    target="_blank">GitHub</a
+                >
+            </div>
+        </div>
+        <!-- Contact Form Heading -->
+        <h2 class="text-2xl font-semibold pt-12 mb-0">Send a Message</h2>
+        <!-- Form container with JS toggle -->
+    <div id="form-container" class="bg-card text-card-foreground rounded-xl shadow-md p-6">
+      <form
+        id="contact-form"
+        action="https://usebasin.com/f/424c5f49a3b7" 
+        method="POST"
+        class="space-y-6"
+      >
+        <input type="text" name="_gotcha" class="hidden" />
+
+        <!-- Name -->
+        <label class="block">
+          <span class="text-sm font-medium">Your Name</span>
+          <div class="flex items-center border border-border rounded-md px-3 py-2 bg-background">
+            <User class="w-4 h-4 mr-2 text-muted-foreground" />
+            <input
+              type="text"
+              name="name"
+              required
+              class="w-full bg-transparent text-foreground focus:outline-none"
+              placeholder="Jane Doe"
+            />
+          </div>
+        </label>
+
+        <!-- Email -->
+        <label class="block">
+          <span class="text-sm font-medium">Email</span>
+          <div class="flex items-center border border-border rounded-md px-3 py-2 bg-background">
+            <Mail class="w-4 h-4 mr-2 text-muted-foreground" />
+            <input
+              type="email"
+              name="email"
+              required
+              class="w-full bg-transparent text-foreground focus:outline-none"
+              placeholder="you@example.com"
+            />
+          </div>
+        </label>
+
+        <!-- Message -->
+        <label class="block">
+          <span class="text-sm font-medium">Message</span>
+          <div class="flex items-start border border-border rounded-md px-3 py-2 bg-background">
+            <MessageSquare class="w-4 h-4 mr-2 mt-1 text-muted-foreground" />
+            <textarea
+              name="message"
+              required
+              rows="5"
+              class="w-full bg-transparent text-foreground focus:outline-none"
+              placeholder="Your message..."
+            ></textarea>
+          </div>
+        </label>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition"
+        >
+          Send Message
+        </button>
+      </form>
+
+      <!-- Hidden thank-you message -->
+      <div id="thank-you" class="hidden text-sm text-green-600 dark:text-green-400 mt-4">
+        ✅ Thanks for reaching out! I’ll get back to you soon.
+      </div>
+    </div>
+  </section>
+
+  <!-- JS for form handling -->
+  <script is:inline>
+    const form = document.getElementById('contact-form');
+    const thankYou = document.getElementById('thank-you');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        form.reset();
+        form.classList.add('hidden');
+        thankYou.classList.remove('hidden');
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
+        </div>
+    </section>
+</BaseLayout>

@@ -16,14 +16,32 @@ import { ChevronDown } from "@lucide/astro";
       <a href="/contact" class="btn-secondary">Contact</a>
     </div>
 
-    <div class="flex justify-center space-x-4">
+    <div class="flex justify-center items-center gap-2 mt-4">
       {social.github && (
+        <!-- Light mode icon -->
+                <img
+                    src="/icons/github-mark.svg"
+                    alt="GitHub logo"
+                    class="w-5 h-5 block dark:hidden"
+                />
+
+                <!-- Dark mode icon -->
+                <img
+                    src="/icons/github-mark-white.svg"
+                    alt="GitHub logo (dark)"
+                    class="w-5 h-5 hidden dark:block"
+                />
         <a href={social.github} aria-label="GitHub" target="_blank" rel="noopener" class="text-primary hover:text-primary-dark">
           GitHub
         </a>
       )}
       {social.linkedin && (
-        <a href={social.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener" class="text-primary hover:text-primary-dark">
+        <img
+                    src="/icons/LinkedIn_icon.svg"
+                    alt="LinkedIn logo"
+                    class="w-5 h-5 block"
+                />
+                <a href={social.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener" class="text-primary hover:text-primary-dark">
           LinkedIn
         </a>
       )}

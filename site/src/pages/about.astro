@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ArrowLeft, Home } from '@lucide/astro';
+---
+
+<BaseLayout>
+  <section class="max-w-3xl mx-auto px-4 py-10">
+    <a href="/" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-4">
+  <ArrowLeft class="w-4 h-4 align-middle" />
+  <Home class="w-4 h-4 align-middle" />
+  <span>Back</span>
+</a>
+    <h1 class="text-4xl font-bold mb-6 text-primary">About Me</h1>
+    <p class="mb-4 text-lg leading-relaxed text-muted-foreground">
+      I'm an independent DevOps consultant based in Ontario, Canada. I help businesses design and maintain scalable infrastructure with a focus on automation, reliability, and simplicity. My work centers on turning complex setups into clean, maintainable systems that are easy to understand and support.
+    </p>
+    <p class="mb-4 text-lg leading-relaxed text-muted-foreground">
+      I work with tools like Terraform, Docker, and GitHub Actions, and deploy to platforms including Azure, GCP, AWS and Oracle Cloud. I also build and manage self-hosted services where it makes sense, keeping everything secure and easy to update.
+    </p>
+    <p class="text-lg leading-relaxed text-muted-foreground">
+      I take a practical approach. The goal is not just to get things working, but to build systems that stay out of the way and hold up over time.
+    </p>
+  </section>
+</BaseLayout>
