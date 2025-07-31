@@ -1,7 +1,8 @@
 ---
 // src/layouts/BaseLayout.astro
 import "../styles/global.css";
-import { Sun, Moon } from "@lucide/astro";
+import { Sun, Moon, Mail } from "@lucide/astro";
+const isContactPage = Astro.url.pathname === '/contact';
 ---
 
 <html lang="en">
@@ -49,4 +50,13 @@ import { Sun, Moon } from "@lucide/astro";
                 });
         </script>
     </body>
+    {!isContactPage && (
+  <a
+    href="/contact"
+    class="fixed bottom-6 right-6 z-50 bg-primary text-white px-4 py-2 rounded-full shadow-md hover:bg-primary/90 transition-all text-sm inline-flex items-center gap-2"
+  >
+    <Mail class="w-4 h-4" />
+    Contact
+  </a>
+)}
 </html>
