@@ -16,7 +16,7 @@ const { entries } = Astro.props;
         data-slug={e.slug}
       >
         {/* Dot */}
-        <div class="absolute left-1/2 top-4 -ml-2 z-10">
+        <div class="absolute top-4 left-4 md:left-1/2 -ml-2 z-10">
           <span class="block h-4 w-4 rounded-full bg-indigo-500 dark:bg-indigo-400"></span>
         </div>
 
@@ -24,7 +24,7 @@ const { entries } = Astro.props;
         <div class="hidden md:block md:w-1/2"></div>
 
         {/* Card */}
-        <div class={`w-full md:w-1/2 ${cardAlign}`}>
+        <div class={`w-full md:w-1/2 ${cardAlign} pl-12 md:pl-0`}>
           <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl">
             {e.data.image && (
               <img src={e.data.image} alt={e.data.title} class="rounded mb-4" />
