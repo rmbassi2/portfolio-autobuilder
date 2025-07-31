@@ -27,7 +27,7 @@ const { entries } = Astro.props;
         <div class={`w-full md:w-1/2 ${cardAlign} pl-12 md:pl-0`}>
           <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl">
             {e.data.image && (
-              <img src={e.data.image} alt={e.data.title} class="rounded mb-4" />
+              <img src={e.data.image} alt={e.data.title} class="rounded mb-4" loading="lazy" />
             )}
             <h3 class="text-xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               {e.data.title}
