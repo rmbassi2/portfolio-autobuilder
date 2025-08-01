@@ -2,7 +2,7 @@
 title: "Self-Hosted BookStack Knowledgebase on Oracle Cloud"
 date: "2025-07-31"
 tags: ["bookstack", "oracle cloud", "docker", "reverse proxy", "caddy"]
-repo: "" # (Add your infra repo if public)
+repo: "https://github.com/yourusername/bookstack"
 ---
 
 # 📚 Self-Hosted BookStack Knowledgebase on Oracle Cloud
